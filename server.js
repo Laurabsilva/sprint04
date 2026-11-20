@@ -1,4 +1,3 @@
-
 import express from 'express';
 import { lerMensagens, salvarMensagens } from "./store.js";
 
@@ -12,8 +11,8 @@ app.get("/sobre", (req, res) => res.send("Mensageiro Local com Node.js, Express 
 app.get("/mensagens", async (req, res) => {
     try {
         res.json(await lerMensagens());
-    } catch (error) {
-        console.error(error);
+    } catch (erro) {
+        console.error(erro);
         res.status(500).json({ erro: "Não foi possível ler as mensagens." });
     }
 });
@@ -25,7 +24,7 @@ app.get("/mensagens/:id", async (req, res) => {
         if (!mensagem) return res.status(404).json({ erro: "Mensagem não encontrada." });
         res.json(mensagem);
     } catch (erro) {
-        console.error(error);
+        console.error(erro);
         res.status(500).json({ erro: "Falha ao consultar mensagem." });
     }
 });
@@ -42,7 +41,7 @@ app.get("/exemplo-salvar", async (req, res) => {
     try {
         throw new Error("Falha planejada na gravação.");
     } catch (erro) {
-        console.erro("Erro planejado em /exemplo-salvar:", erro.message);
+        console.error("Erro planejado em /exemplo-salvar:", erro.message);
         res.status(500).json({
             erro: "Erro planejado em /exemplo-salvar",
             detalhes: erro.message,
